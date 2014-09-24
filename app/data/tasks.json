@@ -1,0 +1,8 @@
+{"rsp":{
+        "stat":"ok",
+        "api_key":"9bb013121e8f3650f350b622a1735442",
+        "foo":"bar",
+        "format":"json",
+        "method":"rtm.test.echo"
+       }
+}

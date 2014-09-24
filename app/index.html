@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/rtmController.js"></script>
+</head>
+
+<body ng-app="myapp">
+
+
+<div ng-controller="rtmController" >
+
+    <table>
+        <th>List: {{tasklist.tasks.list.id}}<th>
+        <tr ng-repeat="task in tasklist.tasks.list.taskseries">
+            <td>{{$index + 1}} {{task.name}}
+                <br/>
+                <span ng-if="task.location_id">@{{task.location_id}}&nbsp;</span>
+                <span ng-repeat="tag in task.tags">
+                    {{tag}}&nbsp;
+                </span>
+            </td>
+            
+        </tr>
+    </table>
+    
+    <p>tags: 
+        <span ng-repeat="tag in taglist">
+            {{tag}}&nbsp;
+        </span>
+    </p>
+
+    <p>locations: 
+        <span ng-repeat="loc in loclist.locations.location">
+            {{loc.name}}&nbsp;
+        </span>
+    </p>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+</html>  
