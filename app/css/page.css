@@ -1,0 +1,69 @@
+.container {
+    overflow: hidden;
+}
+.right {
+    float: right;
+    width: 100px;
+}
+.left {
+    float: left;
+    width: 100px;
+}
+.middle {
+    margin: 0 100px;
+}
+
+.tagList{
+    background-color: #95B9C7;
+    border-radius: 8px 8px 8px 8px;
+    padding: 6px;
+    border-spacing: 0 4px;    
+}
+
+.locationList{
+    background-color: #89C35C;
+    border-radius: 8px 8px 8px 8px;
+    padding: 6px;
+    border-spacing: 0 4px;    
+}
+
+.taskList{
+    text-align: center;
+    width: 98%;
+    //border-collapse: separate;
+    border-spacing: 0 4px;    
+}
+
+.task {
+    border: 1px solid black;
+    background-color: #E5E4E2;
+    color: black;
+    padding: 8px;
+    border-radius: 8px 8px 8px 8px;
+    margin-bottom: 22em;
+}
+
+.taskName {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tag {
+    background-color: #4863A0;
+    color: white;
+    padding: 4px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.location {
+    background-color: green;
+    color: white;
+    padding: 4px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.separator {
+   display: block;
+   margin: 10px 0;
+   content: " ";
+}
