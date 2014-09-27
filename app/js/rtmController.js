@@ -1,5 +1,5 @@
-﻿
-myapp.controller('rtmController', ['$scope', '$http', function($scope, $http) {
+﻿angular.module('visualRtm.controllers', [])
+.controller('rtmController', ['$scope', '$http', function($scope, $http) {
     
     $scope.tasklist = initTasks();
     $scope.loclist = initLocations();

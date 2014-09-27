@@ -1,1 +1,1 @@
-var myapp = angular.module("myapp", []);
+angular.module('visualRtm', ['visualRtm.controllers']);
