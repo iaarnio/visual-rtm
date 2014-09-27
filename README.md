@@ -34,7 +34,10 @@ Later on add functionality for dueDates, propponing, completion, repeats, ..
 
 Prerequirements: git and nodejs installed
 
-1 Clone the project (git clone https://github.com/iaarnio/visual-rtm)
-1 Install requirements (cd visual-rtm; npm install)
-1 Start web server (npm start)
-1 Open browser to http://localhost:8000/app/
+1. Clone the project (git clone https://github.com/iaarnio/visual-rtm)
+
+1. Install requirements (cd visual-rtm; npm install)
+
+1. Start web server (npm start)
+
+1. Open browser to http://localhost:8000/app/
