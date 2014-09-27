@@ -3,14 +3,14 @@ visual-rtm
 
 Visual tool for Remember the Milk task management
 
-*Motivation:*
+**Motivation**
 
-I use Remember the Milk (RTM) as my Getting thing done (GTD) backlog.
+I use Remember the Milk (RTM) as my Getting things done (GTD) backlog.
 
 Daily task management and GTD weekly review via RTM basic web UI is a bit cumbersome. 
-To be able to do the task swiftly you have to memorise keyboard shortcuts.
+To be able to do the tasks swiftly you have to memorise keyboard shortcuts.
 
-Intend of this project is to build visually beautiful tool for RTM task management 
+The intend of this project is to build visually beautiful tool for RTM task management 
 to make these these GTD tasks more fun.
 
 Initial plan:
