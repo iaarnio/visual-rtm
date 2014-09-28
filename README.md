@@ -25,7 +25,7 @@ Initial plan:
   tag5
 ```
 
-Tools would allow attaching and removing tags and/or lcoations from the processed tasks being processed.
+The application would allow attaching and removing tags and/or lcoations from the processed tasks being processed.
 
 Later on add functionality for dueDates, propponing, completion, repeats, ..
 
