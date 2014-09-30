@@ -1,1 +1,1 @@
-angular.module('visualRtm', ['visualRtm.controllers']);
+angular.module('visualRtm', ['visualRtm.controllers', 'lvl.directives.dragdrop']);

@@ -41,3 +41,8 @@ Prerequirements: git and nodejs installed
 1. Start web server (npm start)
 
 1. Open browser to http://localhost:8000/app/
+
+
+**Credits**
+
+Utilizes drag and drop component from https://github.com/logicbomb/lvlDragDrop

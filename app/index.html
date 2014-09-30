@@ -3,43 +3,54 @@
 <head>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>    
+
+    <script src="components/lvl-drag-drop.js"></script>
+    <script src="components/lvl-uuid.js"></script>
+
     <script src="js/app.js"></script>
     <script src="js/rtmController.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/page.css">    
+    <!--
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    -->
+    
 </head>
 
 <body>
+
+<!-- jQuery.event.props.push('dataTransfer'); -->
+
 <div ng-app="visualRtm" ng-controller="rtmController">
 
-<h2>List: {{tasklist.tasks.list.id}}</h2>
+<h2>List: {{tasklist.list}}</h2>
     <div class='container'>
         <div class='right'>
-            <table class='locationList'>
+            <table class='locationList' x-lvl-drop-target='true' x-on-drop='loclist.dropped(dragEl, dropEl)'>
                 <tr><th>Locations</th></tr>
-                <tr ng-repeat="loc in loclist.locations.location">
-                    <td class='location'>{{loc.name}}</td>
+                <tr ng-repeat="loc in loclist.locations">
+                    <td class='location' x-lvl-draggable="true" loc-name="{{loc.name}}">{{loc.name}}</td>
                 </tr>
             </table>
         </div>
         <div class='left'>
-            <table class='tagList'>
+            <table class='tagList' x-lvl-drop-target='true' x-on-drop='taglist.dropped(dragEl, dropEl)'>
                 <tr><th>Tags</th></tr>
-                <tr ng-repeat="tag in taglist">
-                    <td class='tag'>{{tag}}</td>
+                <tr ng-repeat="tag in taglist.tags">
+                    <td class='tag' x-lvl-draggable="true" tag-name="{{tag}}">{{tag}}</td>
                 </tr>
             </table>
         </div>
         <div class='middle'>
             <table class='taskList'>
-                <tr ng-repeat="task in tasklist.tasks.list.taskseries">
-                    <td class='task'>
+                <tr ng-repeat="task in tasklist.tasks">
+                    <td class='task'' x-lvl-drop-target='true' x-on-drop='tasklist.dropped(dragEl, dropEl)'>
                         <span class='taskName'>{{task.name}}</span>
                         <br class='separator'/>
-                        <span class='location' ng-if="task.location_id">@{{task.location_id}}&nbsp;</span>
+                        <span class='location' x-lvl-draggable="true" loc-name="{{task.location_id}}">{{task.location_id}}&nbsp;</span>
                         <span ng-repeat="tag in task.tags">
-                            <span class='tag'>{{tag}}&nbsp;</span>
+                            <span class='tag' x-lvl-draggable="true" tag-name="{{tag}}">{{tag}}&nbsp;</span>
                         </span>
                     </td>
                 </tr>

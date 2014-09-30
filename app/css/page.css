@@ -67,3 +67,18 @@
    margin: 10px 0;
    content: " ";
 }
+
+// drag and drop
+
+.lvl-over {
+    border: 5px dashed blue !important;
+}
+ 
+.lvl-target {
+    background-color: #eee; 
+    //opacity: .5;
+}
+ 
+[draggable] {
+    cursor: move;
+}

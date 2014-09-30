@@ -1,9 +1,50 @@
-﻿angular.module('visualRtm.controllers', [])
+angular.module('visualRtm.controllers', [])
 .controller('rtmController', ['$scope', '$http', function($scope, $http) {
+    $scope.tasklist = {
+        list: 'listname', //tasklist.tasks.list.id
+        tasks: initTasks(),
+        dropped: function(dragEl, dropEl) {
+            var drag = angular.element(dragEl);
+            var drop = angular.element(dropEl);
+            console.log("TASKLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
+            console.log("drag(loc):" + drag.attr('loc-name'));
+            console.log("drag(tag):" + drag.attr('tag-name'));
+        }
+    };
     
-    $scope.tasklist = initTasks();
-    $scope.loclist = initLocations();
-    $scope.taglist = initTags($scope.tasklist);
+    $scope.loclist = { 
+        locations: initLocations(),
+        dropped: function(dragEl, dropEl) {
+            var drag = angular.element(dragEl);
+            var drop = angular.element(dropEl);
+            console.log("LOCLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
+            console.log("drag:" + drag.attr('loc-name'));
+        }
+    };
+    
+    $scope.taglist = {
+        tags: initTags($scope.tasklist),
+        dropped: function(dragEl, dropEl) {
+            var drag = angular.element(dragEl);
+            var drop = angular.element(dropEl);
+            console.log("TAGLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
+            console.log("drag:" + drag.attr('tag-name'));
+            var name = drag.attr('tag-name');
+            if (name && _.findWhere($scope.taglist.tags, name) === undefined) {
+                $scope.taglist.tags.push(name);
+                console.log("len:" + $scope.taglist.tags.length);                
+            }
+        }
+    };
+    
+    /*
+    $scope.dropped = function(dragEl, dropEl) {
+      var drag = angular.element(dragEl);
+      var drop = angular.element(dropEl);
+ 
+      console.log("The element " + drag.attr('id') + " has been dropped on " + drop.attr("id") + "!");
+    };
+    */
 
     /*
     $http.get('data/tasks.json')
@@ -17,7 +58,6 @@
     */
     
 }]);
-
 
 function initTasks() {
     var tasks = 
@@ -81,7 +121,7 @@ function initTasks() {
         }
     };
     
-    return tasks;
+    return tasks.tasks.list.taskseries;
 }
 
 function initLocations() {
@@ -120,13 +160,13 @@ function initLocations() {
       }
     };
     
-    return locations;
+    return locations.locations.location;
 }
 
 function initTags(t) {
     var tags = [];
-    for (var i = 0; i < t.tasks.list.taskseries.length; ++i) {
-        tags = _.union(tags, t.tasks.list.taskseries[i].tags);
+    for (var i = 0; i < t.tasks.length; ++i) {
+        tags = _.union(tags, t.tasks[i].tags);
     };
     return tags;
 }
