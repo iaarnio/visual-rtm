@@ -6,9 +6,27 @@ angular.module('visualRtm.controllers', ['lvl.services'])
         dropped: function(dragEl, dropEl) {
             var drag = angular.element(dragEl);
             var drop = angular.element(dropEl);
+            var dropName = drop.attr('task-name');
+            console.log('drop name:', dropName);
+            if (drag.attr('loc-name')) {
+                this.droppedLoc(dropName, drag.attr('loc-name'))
+            } else if (drag.attr('tag-name')) {
+                this.droppedTag(dropName, drag.attr('tag-name'))
+            }
             console.log("TASKLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
-            console.log("drag(loc):" + drag.attr('loc-name'));
-            console.log("drag(tag):" + drag.attr('tag-name'));
+        },
+        taskByName: function(taskName) { return _.find(this.tasks, {'name': taskName }); },
+        droppedLoc: function(taskName, newLoc) {
+            var task = this.taskByName(taskName);
+            task.location_id = newLoc;
+            $scope.$apply();
+        },
+        droppedTag: function(taskName, newTag) {
+            var task = this.taskByName(taskName);
+            if (newTag && !_.contains(task.tags, newTag)) {
+                task.tags.push(newTag);
+                $scope.$apply();
+            }
         }
     };
     
@@ -18,13 +36,10 @@ angular.module('visualRtm.controllers', ['lvl.services'])
             var drag = angular.element(dragEl);
             var drop = angular.element(dropEl);
             console.log("LOCLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
-            console.log("drag:" + drag.attr('loc-name'));
-            console.log("locations:" + this.locations);
-            console.log("locations[0]:" + this.locations[0]);
             var name = drag.attr('loc-name');
             if (name && _.findWhere(this.locations, {'name': name}) === undefined) {
                 this.locations.push( { 'id': uuid.new(), 'name': name } );
-                console.log("len:" + this.locations.length);                
+                $scope.$apply()
             }
         }
     };
@@ -35,11 +50,10 @@ angular.module('visualRtm.controllers', ['lvl.services'])
             var drag = angular.element(dragEl);
             var drop = angular.element(dropEl);
             console.log("TAGLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
-            console.log("drag:" + drag.attr('tag-name'));
             var name = drag.attr('tag-name');
-            if (name && _.findWhere($scope.taglist.tags, name) === undefined) {
+            if (name && !_.contains($scope.taglist.tags, name)) {
                 $scope.taglist.tags.push(name);
-                console.log("len:" + $scope.taglist.tags.length);                
+                $scope.$apply()
             }
         }
     };

@@ -46,8 +46,8 @@
         <div class='middle'>
             <table class='taskList'>
                 <tr ng-repeat="task in tasklist.tasks">
-                    <td class='task'' x-lvl-drop-target='true' x-on-drop='tasklist.dropped(dragEl, dropEl)'>
-                        <span class='taskName'>{{task.name}}</span>
+                    <td class='task'' x-lvl-drop-target='true' task-name='{{task.name}}' x-on-drop='tasklist.dropped(dragEl, dropEl)'>
+                        <span class='taskName'">{{task.name}}</span>
                         <br class='separator'/>
                         <span class='location' x-lvl-draggable="true" loc-name="{{task.location_id}}">{{task.location_id}}&nbsp;</span>
                         <span ng-repeat="tag in task.tags">

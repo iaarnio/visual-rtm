@@ -33,7 +33,7 @@ function initTasks() {
                     "name": "Remember the milk",
                     "source": "api",
                     "location_id" : "home",
-                    "tags": ["milk", "buy"],
+                    "tags": ["milk", "buy", "new"],
                     "task": {
                         "id": "210",
                         "has_due_time": "0",
