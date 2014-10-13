@@ -49,9 +49,9 @@
                     <td class='task'' x-lvl-drop-target='true' task-name='{{task.name}}' x-on-drop='tasklist.dropped(dragEl, dropEl)'>
                         <span class='taskName'">{{task.name}}</span>
                         <br class='separator'/>
-                        <span class='location' x-lvl-draggable="true" loc-name="{{task.location_id}}">{{task.location_id}}&nbsp;</span>
+                        <span class='location' x-lvl-draggable="true" task-name='{{task.name}}' loc-name="{{task.location_id}}" ng-if="task.location_id">{{task.location_id}}&nbsp;</span>
                         <span ng-repeat="tag in task.tags">
-                            <span class='tag' x-lvl-draggable="true" tag-name="{{tag}}">{{tag}}&nbsp;</span>
+                            <span class='tag' x-lvl-draggable="true" task-name='{{task.name}}' tag-name="{{tag}}">{{tag}}&nbsp;</span>
                         </span>
                     </td>
                 </tr>

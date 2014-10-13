@@ -27,6 +27,14 @@ angular.module('visualRtm.controllers', ['lvl.services'])
                 task.tags.push(newTag);
                 $scope.$apply();
             }
+        },
+        removeTag: function(taskName, tagName) {
+            var task = this.taskByName(taskName);
+            _.pull(task.tags, tagName);
+        },
+        removeLoc: function(taskName) {
+            var task = this.taskByName(taskName);
+            task.location_id = '';
         }
     };
     
@@ -36,11 +44,17 @@ angular.module('visualRtm.controllers', ['lvl.services'])
             var drag = angular.element(dragEl);
             var drop = angular.element(dropEl);
             console.log("LOCLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
-            var name = drag.attr('loc-name');
+            var taskName = drag.attr('task-name');
+            if (taskName) {
+                $scope.tasklist.removeLoc(taskName);
+                $scope.$apply();
+            }
+            /*
             if (name && _.findWhere(this.locations, {'name': name}) === undefined) {
                 this.locations.push( { 'id': uuid.new(), 'name': name } );
                 $scope.$apply()
             }
+            */
         }
     };
     
@@ -50,22 +64,21 @@ angular.module('visualRtm.controllers', ['lvl.services'])
             var drag = angular.element(dragEl);
             var drop = angular.element(dropEl);
             console.log("TAGLIST drop: " + drag.attr('id') + " has been dropped on " + drop.attr("id"));
-            var name = drag.attr('tag-name');
-            if (name && !_.contains($scope.taglist.tags, name)) {
-                $scope.taglist.tags.push(name);
-                $scope.$apply()
+            var tagName = drag.attr('tag-name');
+            var taskName = drag.attr('task-name');
+            if (taskName) {
+                $scope.tasklist.removeTag(taskName, tagName);
+                $scope.$apply();
             }
         }
     };
-    
+
     /*
-    $scope.dropped = function(dragEl, dropEl) {
-      var drag = angular.element(dragEl);
-      var drop = angular.element(dropEl);
- 
-      console.log("The element " + drag.attr('id') + " has been dropped on " + drop.attr("id") + "!");
-    };
+    $scope.$on("LVL-DRAG-START", function() {
+        console.log("$on drag");
+    });
     */
+    
 
     /*
     $http.get('data/tasks.json')
